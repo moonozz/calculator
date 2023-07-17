@@ -109,11 +109,18 @@ buttons.addEventListener("click", function (e) {
 
     if (action === "clear") {
       currentDisplay.textContent = "0";
-      currentHistory.textContent = "0";
+      currentHistory.textContent = "";
       firstNum = undefined;
       previousNum = undefined;
       operatorBtn = undefined;
       previousKey = "clear";
+
+      clickHistory = undefined;
+
+      historySpans.forEach((el) => {
+        operateHistoryDiv.removeChild(el);
+      });
+
       console.log("ac");
     }
 
@@ -143,10 +150,7 @@ buttons.addEventListener("click", function (e) {
         oldDisplay = operateHistoryDiv.textContent;
         console.log(currentDisplay);
       }
-      // else if (firstNum === true && previousKey === 'operator' && previousNum === false) {
-      //     currentDisplay.textContent = calculate(currentDisplay.textContent, operatorBtn, firstNum);
-      //     previousKey = 'calculate'
-      // }
+
       console.log(currentDisplay);
       console.log(currentDisplay.textContent);
       console.log(`clickHistory`, clickHistory);
