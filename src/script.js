@@ -146,7 +146,7 @@ buttons.addEventListener("click", function (e) {
         // operateHistoryDiv 에 clickHistory 와 currentDisplay 있는 계산 결과값 넣기
         historySpan.textContent =
           clickHistory + " " + currentDisplay.textContent;
-        operateHistoryDiv.appendChild(historySpan);
+        operateHistoryDiv.prepend(historySpan);
         oldDisplay = operateHistoryDiv.textContent;
         console.log(currentDisplay);
       }
