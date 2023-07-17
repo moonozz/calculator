@@ -129,31 +129,27 @@ buttons.addEventListener("click", function (e) {
         );
         previousKey = "calculate";
 
-        // currentHistory 에 currentHistory 와 클릭한 calculate 버튼 추가하고
+        // currentHistory 에 clickHistory 와 클릭한 calculate 버튼 추가하고
         currentHistory.textContent = clickHistory + " " + buttonContent;
         // clickHistory 에 현재 currentHistory 값 저장
         clickHistory = currentHistory.textContent;
-
-        // operateHistoryDiv 에 currentHistory 와 currentDisplay 있는 계산 결과값 넣기
-        // operateHistoryDiv.textContent = currentHistory + ' ' + currentDisplay.textContent + ';';
-        // oldDisplay = operateHistoryDiv.textContent;
       }
 
       if (operatorBtn && previousKey === "calculate") {
         // operateHistoryDiv 에 clickHistory 와 currentDisplay 있는 계산 결과값 넣기
-        new_spanTag.innerHTML =
-          clickHistory + " " + currentDisplay.textContent + ";";
-        operateHistoryDiv.textContent = new_spanTag.innerHTML;
+        historySpan.textContent =
+          clickHistory + " " + currentDisplay.textContent;
+        operateHistoryDiv.appendChild(historySpan);
         oldDisplay = operateHistoryDiv.textContent;
-        console.log(oldDisplay);
-      } else if (oldDisplay) {
-        operateHistoryDiv.textContent =
-          operateHistoryDiv.textContent + oldDisplay;
+        console.log(currentDisplay);
       }
       // else if (firstNum === true && previousKey === 'operator' && previousNum === false) {
       //     currentDisplay.textContent = calculate(currentDisplay.textContent, operatorBtn, firstNum);
       //     previousKey = 'calculate'
       // }
+      console.log(currentDisplay);
+      console.log(currentDisplay.textContent);
+      console.log(`clickHistory`, clickHistory);
     }
   }
 });
