@@ -25,11 +25,8 @@ function calculate(n1, operator, n2) {
 const currentDisplay = document.querySelector(".current-display"); // calculator__display 엘리먼트와, 그 자식 엘리먼트의 정보를 모두 담고 있습니다.
 const currentHistory = document.querySelector(".current-history");
 const operateHistoryDiv = document.querySelector(".history");
-let firstNum, operatorBtn, previousKey, previousNum;
-// let currentHistory = "0";
 
-let new_spanTag = document.createElement("span");
-new_spanTag.setAttribute("class", "old-history");
+let firstNum, operatorBtn, previousKey, previousNum;
 
 let clickHistory;
 let oldDisplay = "0";
@@ -53,38 +50,38 @@ buttons.addEventListener("click", function (e) {
         currentDisplay.textContent = buttonContent;
         //currentHistory 에 클릭한 number 버튼이 보이게 하고
         currentHistory.textContent = buttonContent;
-        // currentHistory 에 현재 currentHistory 값 저장
-        currentHistory = currentHistory.textContent;
+        // clickHistory 에 현재 currentHistory 값 저장
+        clickHistory = currentHistory.textContent;
       } else if (previousKey === "operator") {
         currentDisplay.textContent = buttonContent;
         // 만약 이전 키가 operator라면. currentHistory 에 클릭한 number 값을 추가하고
         currentHistory.textContent =
           currentHistory.textContent + " " + buttonContent;
-        // currentHistory 에 현재 currentHistory 값 저장
-        currentHistory = currentHistory.textContent;
+        // clickHistory 에 현재 currentHistory 값 저장
+        clickHistory = currentHistory.textContent;
       } else {
         currentDisplay.textContent = currentDisplay.textContent + buttonContent;
         currentHistory.textContent = currentHistory.textContent + buttonContent;
-        currentHistory = currentHistory.textContent;
+        clickHistory = currentHistory.textContent;
       }
 
       if (previousKey === "calculate") {
         currentDisplay.textContent = buttonContent;
         //currentHistory 에 클릭한 number 버튼이 보이게 하고
         currentHistory.textContent = buttonContent;
-        // currentHistory 에 현재 currentHistory 값 저장
-        currentHistory = currentHistory.textContent;
+        // clickHistory 에 현재 currentHistory 값 저장
+        clickHistory = currentHistory.textContent;
       }
 
       // if (firstNum === currentDisplay.textContent && previousKey === 'operator') {
-      //     currentHistory.textContent = currentHistory + buttonContent;
-      //     currentHistory = currentHistory.textContent;
+      //     currentHistory.textContent = clickHistory + buttonContent;
+      //     clickHistory = currentHistory.textContent;
       // }
 
       // previousKey 를 바꿔줘야 위 if 문에 걸리지 않아서 previousNum 숫자 계속 입력할 수 있어
       previousKey = "number";
       console.log("숫자 " + buttonContent + " 버튼");
-      console.log(currentHistory);
+      console.log(clickHistory);
     }
 
     if (action === "operator") {
@@ -94,11 +91,11 @@ buttons.addEventListener("click", function (e) {
       // 연산자가 눌렸다는 사실도 기억해야 돼
       previousKey = "operator";
 
-      // 만약 currentHistory가 있고 이전키가 number 라면 currentHistory 에 클릭한 operator 추가
-      if (currentHistory || previousKey === "number") {
-        currentHistory.textContent = currentHistory + " " + buttonContent;
-        // currentHistory 에 현재 currentHistory 값 저장
-        currentHistory = currentHistory.textContent;
+      // 만약 clickHistory 있고 이전키가 number 라면 currentHistory 에 클릭한 operator 추가
+      if (clickHistory || previousKey === "number") {
+        currentHistory.textContent = clickHistory + " " + buttonContent;
+        // clickHistory 에 현재 currentHistory 값 저장
+        clickHistory = currentHistory.textContent;
       }
 
       console.log("op");
@@ -133,9 +130,9 @@ buttons.addEventListener("click", function (e) {
         previousKey = "calculate";
 
         // currentHistory 에 currentHistory 와 클릭한 calculate 버튼 추가하고
-        currentHistory.textContent = currentHistory + " " + buttonContent;
-        // currentHistory 에 현재 currentHistory 값 저장
-        currentHistory = currentHistory.textContent;
+        currentHistory.textContent = clickHistory + " " + buttonContent;
+        // clickHistory 에 현재 currentHistory 값 저장
+        clickHistory = currentHistory.textContent;
 
         // operateHistoryDiv 에 currentHistory 와 currentDisplay 있는 계산 결과값 넣기
         // operateHistoryDiv.textContent = currentHistory + ' ' + currentDisplay.textContent + ';';
@@ -143,9 +140,9 @@ buttons.addEventListener("click", function (e) {
       }
 
       if (operatorBtn && previousKey === "calculate") {
-        // operateHistoryDiv 에 currentHistory 와 currentDisplay 있는 계산 결과값 넣기
+        // operateHistoryDiv 에 clickHistory 와 currentDisplay 있는 계산 결과값 넣기
         new_spanTag.innerHTML =
-          currentHistory + " " + currentDisplay.textContent + ";";
+          clickHistory + " " + currentDisplay.textContent + ";";
         operateHistoryDiv.textContent = new_spanTag.innerHTML;
         oldDisplay = operateHistoryDiv.textContent;
         console.log(oldDisplay);
