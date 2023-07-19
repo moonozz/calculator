@@ -80,8 +80,8 @@ buttons.addEventListener("click", function (e) {
 
       // previousKey 를 바꿔줘야 위 if 문에 걸리지 않아서 previousNum 숫자 계속 입력할 수 있어
       previousKey = "number";
-      console.log("숫자 " + buttonContent + " 버튼");
-      console.log(clickHistory);
+      // console.log("숫자 " + buttonContent + " 버튼");
+      // console.log(clickHistory);
     }
 
     if (action === "operator") {
@@ -89,7 +89,6 @@ buttons.addEventListener("click", function (e) {
       // 연산자 버튼이 눌리면 화면에 있는 숫자를 기억해야 돼
       firstNum = currentDisplay.textContent;
       // 연산자가 눌렸다는 사실도 기억해야 돼
-      previousKey = "operator";
 
       // 만약 clickHistory 있고 이전키가 number 라면 currentHistory 에 클릭한 operator 추가
       if (clickHistory || previousKey === "number") {
@@ -98,12 +97,14 @@ buttons.addEventListener("click", function (e) {
         clickHistory = currentHistory.textContent;
       }
 
-      console.log("op");
+      previousKey = "operator";
+      // console.log("op");
     }
 
     if (action === "decimal") {
       if (currentDisplay.textContent.includes(".") === false) {
         currentDisplay.textContent = currentDisplay.textContent + ".";
+        currentHistory.textContent = currentHistory.textContent + ".";
       }
     }
 
