@@ -85,20 +85,31 @@ buttons.addEventListener("click", function (e) {
     }
 
     if (action === "operator") {
+      // 연산자가 눌렸다는 사실 기억
       operatorBtn = buttonContent;
       // 연산자 버튼이 눌리면 화면에 있는 숫자를 기억해야 돼
       firstNum = currentDisplay.textContent;
-      // 연산자가 눌렸다는 사실도 기억해야 돼
 
-      // 만약 clickHistory 있고 이전키가 number 라면 currentHistory 에 클릭한 operator 추가
-      if (clickHistory || previousKey === "number") {
+      if (clickHistory && previousKey === "operator") {
+        // 공백을 기준으로 배열만들고, 마지막 operator 제외하고 다시 조합하기
+        const operatorDel = currentHistory.textContent
+          .split(" ")
+          .slice(0, -1)
+          .join(" ");
+        currentHistory.textContent = operatorDel + " " + buttonContent;
+        clickHistory = currentHistory.textContent;
+      } else if (clickHistory || previousKey === "number") {
+        // 만약 clickHistory 있거나 이전키가 number면 currentHistory 에 클릭한 operator 추가
         currentHistory.textContent = clickHistory + " " + buttonContent;
         // clickHistory 에 현재 currentHistory 값 저장
         clickHistory = currentHistory.textContent;
       }
-
+      // else {
+      //   // 이전에 입력된 값이 없는 경우
+      //   currentHistory.textContent = "";
+      //   clickHistory = currentHistory.textContent;
+      // }
       previousKey = "operator";
-      // console.log("op");
     }
 
     if (action === "decimal") {
